@@ -1,0 +1,25 @@
+<h1>Admin::Books#index</h1>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Author ID</th>
+      <th scope="col">Category ID</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @books.any? %>
+      <% @books.each do |book| %>
+        <tr>
+          <th scope="row"><%=book.id%></th>
+          <td><%=book.name%></td>
+          <td><%=book.author_id%></td>
+          <td><%=book.category_id%></td>
+          <td><%=book.description%></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
