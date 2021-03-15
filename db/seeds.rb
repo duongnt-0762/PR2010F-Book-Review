@@ -7,22 +7,22 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Author.create!(id: 100,
-  name: "Thai Thuong Bo Y",
-  description: "Dep trai khoai to")
+Author.create!(id: 777,
+  name: "To Van Ban",
+  description: "My favourite Author")
 
-Category.create!(id: 100,
-  name: "Tieu Thuyet")
+Category.create!(id: 777,
+  name: "Toan hoc")
 
-Book.create!(id: 1000,
-  name: "Trang Buc",
-  author_id: 100,
-  category_id: 100,
-  description: "LOrem x3.14")
+Book.create!(
+  name: "Giai tich 2",
+  author_id: 777,
+  category_id: 777,
+  description: "Giang vien HVKTQS")
 
 # Users
-User.create!(name: "chienboy",
-  email: "example@163.com",
+User.create!(name: "Nguyen Tien Dat",
+  email: "nguyendat@gmail.com",
   role_admin: 1,)
 10.times do |n|
   name = Faker::Name.name

@@ -3,6 +3,7 @@ class User < ApplicationRecord
 	has_many :comments
 	has_many :favorites
 	has_many :rates
+	has_many :likes
 
 	before_save :downcase_email
 	validates :name, presence: true, length: { maximum: 50 }

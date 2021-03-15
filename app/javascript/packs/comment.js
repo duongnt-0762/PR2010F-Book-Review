@@ -43,6 +43,7 @@
 		});
 	});
 
+// -----------------------------------------------------------------------------------------------
 // Xử lý reply comment 
 
 	$(document).ready(function(){
@@ -55,7 +56,6 @@
 				$(this).siblings().hide("slow");
 				current_appear = 1
 			}
-// --------------------------------------------------------------------------------
 				// Xu ly logic de lay gia tri cua o input
 				let id_button_reply = $(this).attr("id");
 				let list_children = document.getElementById(id_button_reply).parentNode.children;
@@ -98,3 +98,6 @@
 				};
 			});
 	});
+
+
+// ----------------------------------------------------------------------------------------------------------------------------

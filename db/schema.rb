@@ -75,10 +75,13 @@ ActiveRecord::Schema.define(version: 2021_03_04_094850) do
   create_table "comments", charset: "utf8", force: :cascade do |t|
     t.integer "user_id"
     t.text "content"
+    t.string "targetable_type"
+    t.bigint "targetable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "targetable_type"
-    t.integer "targetable_id"
+    t.index ["targetable_id"], name: "index_comments_on_targetable_id"
+    t.index ["targetable_type", "targetable_id"], name: "index_comments_on_targetable"
+    t.index ["targetable_type"], name: "index_comments_on_targetable_type"
   end
 
   create_table "favorites", charset: "utf8", force: :cascade do |t|
@@ -90,7 +93,6 @@ ActiveRecord::Schema.define(version: 2021_03_04_094850) do
 
   create_table "likes", charset: "utf8", force: :cascade do |t|
     t.integer "comment_id"
-    t.integer "review_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
