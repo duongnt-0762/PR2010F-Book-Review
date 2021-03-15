@@ -2,19 +2,36 @@ Content: <%= comment.content %><br>
 
 User: <%= comment.user_name %><br>
 
-Posted: <%= time_ago_in_words(comment.created_at) %> ago.<hr>
+Posted: <%= time_ago_in_words(comment.created_at) %> ago.<br>
+<div class="likeBx">
+	<input style="display: none;" type="number" value="<%= comment.id %>">
+	<input style="display: none;" type="number" value="<%= current_user.id %>">
+	<input style="display: none;" type="number" value="<%= comment.likes.count %>">
+	<i class="far fa-thumbs-up"></i>
+	<span><%= comment.likes.count %></span>
+	<%= (comment.likes.count == 0)? (render "like") : (render "unlike") %>
+</div>
+<hr>
+
 
 <!-- This code render subcomment content start -->
 <% comment.subcomments.each do |subcomment| %>
-	<%= subcomment.content %><br>
-	<%= subcomment.user_name %><br>
-	<%= time_ago_in_words(subcomment.created_at) %> ago.<br><hr>
-	<%= @review.comments.last.user_name %>
+<%= subcomment.content %><br>
+<%= subcomment.user_name %><br>
+<%= time_ago_in_words(subcomment.created_at) %> ago.<br>
+<div class="likeBx">
+	<input class="comment_id" style="display: none;" type="number" value="<%= subcomment.id %>">
+	<input style="display: none;" type="number" value="<%= current_user.id %>">
+	<input style="display: none;" type="number" value="<%= subcomment.likes.count %>">
+	<i class="far fa-thumbs-up"></i>
+	<span><%= subcomment.likes.count %></span>
+	<%= (subcomment.likes.count == 0)? (render "like") : (render "unlike") %>
+</div>
+<hr>
 <% end %>
 <!-- This code render subcomment content end -->
 
 <div class="container">
-	<div></div>
 	<input id="user_id" class="d-none" type="number" value="<%= current_user.id %>">
 	<textarea id="content" cols="10" rows="2" class="form-control"></textarea>
 	<input class="targetable_type d-none" type="text" value="Comment">

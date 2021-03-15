@@ -3,18 +3,18 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|vi/ do
   end
   
-	root 'static_pages#home'
-	get '/help', to: 'static_pages#help'
-	get '/about', to: 'static_pages#about'
-	get '/contact', to: 'static_pages#contact'
-	get '/signup', to: 'users#new'
+  root 'static_pages#home'
+  get '/help', to: 'static_pages#help'
+  get '/about', to: 'static_pages#about'
+  get '/contact', to: 'static_pages#contact'
+  get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login',to: 'sessions#create'
   delete '/logout',to: 'sessions#destroy'
   get '/book/category/:category', to: 'books#index'
   resources :favorites, only: [:index, :destroy]
-	resources :users
-	resources :books, only: [:show, :index] do
+  resources :users
+  resources :books, only: [:show, :index] do
     resources :rates
   end
   mount Ckeditor::Engine => '/ckeditor'
@@ -31,12 +31,18 @@ Rails.application.routes.draw do
     get 'static_pages/help'
   end
 
-  resources :reviews
+  resources :reviews do
+    resources :comments
+  end
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   resources :users
 
-  resources :comments
+  resources :comments do
+      resources :likes, only: [:create,:destroy]
+    end
+
+  
 end

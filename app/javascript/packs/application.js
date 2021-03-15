@@ -16,7 +16,8 @@ import '../stylesheets/application';
 
 require('admin-lte');
 require('packs/comment.js');
-// require('packs/rating.js');
+require('packs/like.js');
+require('packs/rating.js');
 require('packs/states.js');
 require('packs/customPopover.js');
 // require('packs/autocomplete.js');

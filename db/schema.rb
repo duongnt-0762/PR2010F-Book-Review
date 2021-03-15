@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_03_04_094850) do
 
+  create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -21,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_03_04_094850) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "latin1", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,20 +34,20 @@ ActiveRecord::Schema.define(version: 2021_03_04_094850) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "latin1", force: :cascade do |t|
+  create_table "active_storage_variant_records", charset: "utf8", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "authors", charset: "latin1", force: :cascade do |t|
+  create_table "authors", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "books", charset: "latin1", force: :cascade do |t|
+  create_table "books", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.integer "author_id"
     t.integer "category_id"
@@ -55,13 +56,13 @@ ActiveRecord::Schema.define(version: 2021_03_04_094850) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "categories", charset: "latin1", force: :cascade do |t|
+  create_table "categories", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ckeditor_assets", charset: "latin1", force: :cascade do |t|
+  create_table "ckeditor_assets", charset: "utf8", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
     t.integer "data_file_size"
@@ -74,28 +75,30 @@ ActiveRecord::Schema.define(version: 2021_03_04_094850) do
   create_table "comments", charset: "utf8", force: :cascade do |t|
     t.integer "user_id"
     t.text "content"
+    t.string "targetable_type"
+    t.bigint "targetable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "targetable_type"
-    t.integer "targetable_id"
+    t.index ["targetable_id"], name: "index_comments_on_targetable_id"
+    t.index ["targetable_type", "targetable_id"], name: "index_comments_on_targetable"
+    t.index ["targetable_type"], name: "index_comments_on_targetable_type"
   end
 
-  create_table "favorites", charset: "latin1", force: :cascade do |t|
+  create_table "favorites", charset: "utf8", force: :cascade do |t|
     t.integer "book_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "likes", charset: "latin1", force: :cascade do |t|
+  create_table "likes", charset: "utf8", force: :cascade do |t|
     t.integer "comment_id"
-    t.integer "review_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "rates", charset: "latin1", force: :cascade do |t|
+  create_table "rates", charset: "utf8", force: :cascade do |t|
     t.integer "book_id"
     t.integer "user_id"
     t.integer "star"
@@ -103,7 +106,7 @@ ActiveRecord::Schema.define(version: 2021_03_04_094850) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reviews", charset: "latin1", force: :cascade do |t|
+  create_table "reviews", charset: "utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "book_id"
     t.text "content"
@@ -121,5 +124,6 @@ ActiveRecord::Schema.define(version: 2021_03_04_094850) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end
