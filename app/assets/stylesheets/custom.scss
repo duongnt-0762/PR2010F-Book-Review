@@ -296,3 +296,27 @@ input {
 #content{
 	display: none;
 }
+
+.box_3 {
+  padding: 68px 42px 90px 42px;
+  border-left: 1px solid #e5e5e5;
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+}
+
+.box_3:hover {
+	background: #333;
+	color: #fff;
+	.btn_1{
+		color: #fff;
+	}
+}
+
+.text_3 {
+  font: 400 45px/53px 'Lato', sans-serif;
+}
+
+.box_3 .text_3 + p {
+  padding-top: 14px;
+}
+

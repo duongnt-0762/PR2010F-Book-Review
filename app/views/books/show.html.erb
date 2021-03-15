@@ -2,16 +2,16 @@
 	<div class="col-4 center">
 		<%= image_tag @book.display_image(250, 357) if @book.image.attached? %>
 		<div>
-			<% if @rate.present? %>
-				<%= hidden_field_tag 'input', @rate.id, class: "rateId"%>
-				<%= hidden_field_tag 'input', @rate.star, class: "rateNumber"%>
-			<% else %>
-				<%= hidden_field_tag 'input', 0, class: "rateNumber"%>
-			<% end %>
 			<%= render 'rates/form'%>
 		</div>
 		<div>
 			<%= link_to "Review", new_review_path(book_id: @book.id ), class:"btn btn-primary" %>
+			<% if logged_in? %>
+				<% if @isInFavorite.nil? %>
+					<%= link_to "Add to favorite", book_path(@book.id), class:"btn btn-primary addFavorite" %>
+					<%= javascript_pack_tag 'addFavorite' %>
+				<% end %>
+			<% end %>
 		</div>
 	</div>
 	<div class="col-8">
@@ -30,4 +30,3 @@
 		</div>
 	</div>
 </div>
-

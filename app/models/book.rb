@@ -10,7 +10,8 @@ class Book < ApplicationRecord
 	validates :category_id, presence: true
 	validates :author_id, presence: true
 	validates :name, presence: true
-	validates :description, presence: true
+  validates :description, presence: true
+  validates_length_of :description, :maximum => 244
 	validates :image, content_type: {
 		in: %w[image/jpeg image/gif image/png],
 		message: "must be a valid image format" },

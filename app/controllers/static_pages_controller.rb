@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
-	def index
+	def home
+    @book = Book.all.take(2)
 	end
 
 	def help

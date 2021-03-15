@@ -17,14 +17,17 @@
   <% end %>
 </div>
 <div class="container">
+  <% if @books.any? %>
   <div class="d-flex flex-wrap">
-    <% if @books.any? %>
-      <% @books.each do |book| %>
-        <%= render book %>
-      <% end %>
-    <% else %>
-      <p>Category does not exist</p>
+    <% @books.each do |book| %>
+      <%= render book %>
     <% end %>
   </div>
+  <div class="digg_pagination">
+    <%= will_paginate @books%>
+  </div>
+  <% else %>
+    <p>Category does not exist</p>
+  <% end %>
 </div>
 

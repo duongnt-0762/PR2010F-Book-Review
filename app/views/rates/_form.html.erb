@@ -1,6 +1,16 @@
-<div class="reviewButtonContaine pt-2">
+<div class="reviewButtonContainer">
+  <span class="rateUiText"></span>
+  <% if @rate.present? %>
+    <span>My rating</span>
+    <%= hidden_field_tag 'input', @rate.id, class: "rateId"%>
+    <%= hidden_field_tag 'input', @rate.star, class: "rateNumber"%>
+  <% else %>
+    <span>Rate this book</span>
+    <%= hidden_field_tag 'input', 0, class: "rateNumber"%>
+  <% end %>
   <div id="ratingNoti" class="toast alert" role="alert">
   </div>
+  <span class="ratingStatus" style="display: none;">Saving..</span>
   <ul class="ratingW">
     <li><a href="javascript:void(0);"><div class="star"></div></a></li>
     <li><a href="javascript:void(0);"><div class="star"></div></a></li>

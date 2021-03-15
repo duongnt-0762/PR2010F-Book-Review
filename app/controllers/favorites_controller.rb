@@ -3,13 +3,27 @@ class FavoritesController < ApplicationController
   before_action :find_favorite, only: [:destroy]
 
   def index
-    @favorite = Favorite.all
+    @favorite = Favorite.where(user_id: current_user.id)
+  end
+
+  def create
+    params[:favorite][:user_id] = current_user.id
+    @isInFavorite =  Favorite.find_by(book_id: params[:id], user_id: current_user.id)
+    @fav = Favorite.new favorite_params
+    if @fav.save && @isInFavorite.nil?
+      # flash[:success]="Added to favorite"
+      # notification in js file
+      render json: @fav
+    else
+      # flash[:danger] = "Add failed"
+      redirect_to
+    end
   end
 
   def destroy
     @favorite.destroy
     flash[:success] = "Book deleted"
-    redirect_to
+    redirect_to favorites_path
   end
 
   private
@@ -17,7 +31,11 @@ class FavoritesController < ApplicationController
       @favorite =  Favorite.find_by id: params[:id]
       unless @favorite.present?
         flash[:danger] = "Book doesn't exist"
-        redirect_to favorite_index_path
+        redirect_to favorites_path
       end
+    end
+
+    def favorite_params
+      params.require(:favorite).permit(:user_id, :book_id)
     end
 end

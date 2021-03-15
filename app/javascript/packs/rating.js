@@ -1,8 +1,14 @@
 $(document).ready(function(){
-  // $('.ratingW li').click(function(){
-  //         $(".toast").toast({ delay: 1000 });
-  //         $(".toast").toast('show');
-  // });
+  $('.ratingW li').click(function(){
+          // $(".toast").toast({ delay: 1000 });
+          // $(".toast").toast('show');
+      $('.ratingW li').css('display', 'none');
+      $('.ratingStatus').css('display', 'block');
+    setTimeout(function(){
+      $('.ratingStatus').css('display', 'none');
+      $('.ratingW li').css('display', 'inline-block');
+    }, 1000);
+  });
 
   if($(".rateId").val() !== undefined){
     var stars = $('.ratingW').find('li')
@@ -36,14 +42,13 @@ $(document).on("click", ".ratingW li a", function(){
           "rate_id": $(".rateId").val()
         },
         success:function(data){
-          alert("Thanks for rating");
             // $('#ratingNoti').addClass("alert-success").removeClass("alert-danger");
             // $('#ratingNoti').html("Cam on ban da danh gia");
             // $('#ratingNoti').addClass("alert-danger").removeClass("alert-success");
             // $('#ratingNoti').html("Loi. Khong the danh gia");
         },
         error:function(data){
-          document.location.href="/login";
+          document.location.href="/";
         }
     });
 

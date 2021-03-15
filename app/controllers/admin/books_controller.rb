@@ -2,6 +2,7 @@ class Admin::BooksController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :admin_user
   before_action :find_book, only: [:show, :edit, :update, :destroy]
+  before_action{flash.clear}
 
   def index
     @books = Book.all
@@ -44,9 +45,11 @@ class Admin::BooksController < ApplicationController
       flash[:success] = "Book updated"
       redirect_to admin_book_path(@book)
     else
+      flash[:danger] = "Update failed"
       render :edit
     end
   end
+
 
   def destroy
     @book.destroy

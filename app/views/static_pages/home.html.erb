@@ -1,51 +1,71 @@
 <div class="container">
-    <div class="row">
-        <div class="grid_12">
-            <div class="box_2">
-                <div class="box_3">
-                    <h1><%= I18n.t('index.title') %></h1>
-                    <h3 class="text_3 color_1">Trending
-                        <span class="text_4">Book Reviews</span>
-                    </h3>
-
-                    <p>
-                        Lorem ipsum dolor sit amet conse ctetur
-                        adipisicing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem set.
-                    </p>
-
-                    <a href="#" class="btn_1 color_4">Read more</a>
+    <div class="row pt-3 stellar-section border-bottom">
+        <div class="col">
+            <h3 class="text_3 color_1">Best
+                <span class="text_4">Sellers</span>
+            </h3>
+            <div class="row">
+            <% @book.each do |b| %>
+                <div class="col text-center">
+                    <div class="d-flex flex-column bd-highlight mb-3 text-left">
+                        <%= image_tag b.display_image(250, 357) if b.image.attached? %>
+                        <div class="bd-highlight pt-2" id="bookTitle">
+                            <h2 class="text-left">
+                                <%= link_to b.name, book_path(b.id) %>
+                            </h2>
+                        </div>
+                        <div class="bd-highlight" id="bookAuthor">
+                            <div><span>by </span><%= link_to b.author_name, '#' %></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="box_3">
-                    <h3 class="text_3 color_1">Featured
-                        <span class="text_4">Top Picks</span>
-                    </h3>
-
-                    <p>
-                        Lorem ipsum dolor sit amet conse ctetur
-                        adipisicing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem set.
-                    </p>
-
-                    <a href="#" class="btn_1 color_4">Read more</a>
-                </div>
-                <div class="box_3">
-                    <h3 class="text_3 color_1">Books
-                        <span class="text_4">This Month</span>
-                    </h3>
-
-                    <p>
-                        Lorem ipsum dolor sit amet conse ctetur
-                        adipisicing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem set.
-                    </p>
-
-                    <a href="#" class="btn_1 color_4">Read more</a>
-                </div>
+            <% end %>
             </div>
         </div>
     </div>
+    <div class="row ">
+        <div class="col-4 box_3">
+            <h3 class="text_3 color_1">Trending
+                <span class="text_4">Book Reviews</span>
+            </h3>
+
+            <p>
+                Lorem ipsum dolor sit amet conse ctetur
+                adipisicing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem set.
+            </p>
+
+            <a href="#" class="btn_1 color_4 btn btn-outline-dark">Read more</a>
+        </div>
+        <div class="col-4 box_3">
+            <h3 class="text_3 color_1">Featured
+                <span class="text_4">Top Picks</span>
+            </h3>
+
+            <p>
+                Lorem ipsum dolor sit amet conse ctetur
+                adipisicing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem set.
+            </p>
+
+            <a href="#" class="btn_1 color_4 btn btn-outline-dark">Read more</a>
+        </div>
+        <div class="col-4 box_3">
+            <h3 class="text_3 color_1">Books
+                <span class="text_4">This Month</span>
+            </h3>
+
+            <p>
+                Lorem ipsum dolor sit amet conse ctetur
+                adipisicing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem set.
+            </p>
+
+            <a href="#" class="btn_1 color_4 btn btn-outline-dark">Read more</a>
+        </div>
+    </div>
+</div>
 </div>

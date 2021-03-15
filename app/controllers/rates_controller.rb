@@ -21,7 +21,7 @@ class RatesController < ApplicationController
 
   def update
     if @rate.update rate_params
-      flash[:success] = "Thanks for rating."
+      # flash[:success] = "Thanks for rating."
       render json: @rate
       # redirect_to admin_book_path(@rate)
     else
